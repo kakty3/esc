@@ -1,0 +1,2 @@
+click==6.7
+git+https://github.com/lycantropos/python-utils#egg=python_utils
