@@ -1,8 +1,10 @@
 import logging
 
-import json
 import numpy as np
 from sklearn.cluster import DBSCAN
+
+from esc_identifier.distance import distance_matrix
+
 
 logger = logging.getLogger(__name__)
 
@@ -27,8 +29,29 @@ def dbscan(items, distance_matrix, eps=0.1, min_samples=1):
     return scalar_clusters
 
 
-def load_clusters(path):
-    with open(path, 'r') as clusters_json:
-        clusters = json.load(clusters_json)
+def get_clusters(iterable, distance_function, eps=0.1):
+    distance_matrix_ = distance_matrix(
+        iterable,
+        distance_function
+    )
 
-    return clusters
+    items_indices = list(range(len(iterable)))
+
+    indices_clusters = dbscan(items_indices, distance_matrix_, eps=eps)
+    return indices_clusters
+
+# def get_clusters(iterable, distance_function, eps=0.1):
+#     distance_matrix_ = distance_matrix(
+#         iterable,
+#         distance_function
+#     )
+#
+#     items_indices = list(range(len(iterable)))
+#
+#     indices_clusters = dbscan(items_indices, distance_matrix_, eps=eps)
+#     clusters = [
+#         [iterable[i] for i in cluster]
+#         for cluster
+#         in indices_clusters
+#     ]
+#     return clusters

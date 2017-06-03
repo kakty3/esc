@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  esc-identifier-postgres:
+  postgres:
     image: postgres:9.6
     volumes:
       - ./postgres-data/:/var/lib/postgresql/data
@@ -19,18 +19,3 @@ services:
       - ./mongodb-data:/data/db
     ports:
       - 27017:27017
-
-  esc-identifier:
-    build: ./esc_identifier
-    image: local/esc-identifier:latest
-    volumes:
-      - ./esc_identifier:/opt/esc_identifier
-      - ./data:/opt/data
-    environment:
-      - DB_URI=postgresql://root:secret@esc-identifier-postgres:5432/esc
-      - KDD_DB_URI=postgresql://root:secret@esc-identifier-postgres:5432/Kdd2013AuthorPaperIdentification
-      - MONGO_URI=mongodb://mongo:27017/
-    command:
-      - python3.6
-      - manage.py
-      - show_kdd_authors

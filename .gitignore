@@ -169,3 +169,5 @@ Temporary Items
 # Project specific
 data/
 postgres-data/
+nltk_data
+mongodb-data

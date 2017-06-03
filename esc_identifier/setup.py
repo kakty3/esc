@@ -11,7 +11,6 @@ setup(
         'jellyfish>=0.5.6',
         'fuzzywuzzy>=0.15.0',
         'ngram>=3.3',
-        'names>=0.3.0',
         'nltk>=3.2.2',
         'numpy>=1.12.1',
         'pandas>=0.20.1',
