@@ -29,13 +29,13 @@ def dbscan(items, distance_matrix, eps=0.1, min_samples=1):
     return scalar_clusters
 
 
-def get_clusters(iterable, distance_function, eps=0.1):
+def get_clusters(sequence, distance_function, key=None, eps=0.1):
     distance_matrix_ = distance_matrix(
-        iterable,
+        sequence if key is None else list(map(key, sequence)),
         distance_function
     )
 
-    items_indices = list(range(len(iterable)))
+    items_indices = list(range(len(sequence)))
 
     indices_clusters = dbscan(items_indices, distance_matrix_, eps=eps)
     return indices_clusters
