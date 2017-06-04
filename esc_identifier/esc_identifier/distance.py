@@ -32,7 +32,7 @@ token_sort_distance = normalize_fuzzywuzzy_distance(fuzz.token_sort_ratio)
 partial_token_sort_distance =\
     normalize_fuzzywuzzy_distance(fuzz.partial_token_sort_ratio)
 
-token_set_distance = normalize_fuzzywuzzy_distance(fuzz.token_set_ratio)
+token_set_distance = normalize_fuzzywuzzy_distance(fuzz._token_set)
 partial_token_set_distance =\
     normalize_fuzzywuzzy_distance(fuzz.partial_token_set_ratio)
 

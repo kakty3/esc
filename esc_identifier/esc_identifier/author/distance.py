@@ -1,13 +1,21 @@
+from functools import partial
+
 from esc_identifier.distance import token_set_distance
 from esc_identifier.utils.string import (
     normalize_human_name, normalize_affiliation
 )
 from . import Author
 
+distance_function = partial(
+    token_set_distance,
+    force_ascii=False,
+    full_process=False,
+    partial=False,
+)
+
 
 def human_name_distance(a: str, b: str, normalize=False):
-    distance = token_set_distance
-    return distance(
+    return distance_function(
         normalize_human_name(a) if normalize else a,
         normalize_human_name(b) if normalize else b,
     )
@@ -15,8 +23,7 @@ def human_name_distance(a: str, b: str, normalize=False):
 
 # TODO: detect countries and cities
 def affiliation_distance(a: str, b: str, normalize=False):
-    distance = token_set_distance
-    return distance(
+    return distance_function(
         normalize_affiliation(a) if normalize else a,
         normalize_affiliation(b) if normalize else b,
     )
