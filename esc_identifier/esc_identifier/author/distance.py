@@ -1,13 +1,8 @@
-from collections import namedtuple
-
 from esc_identifier.distance import token_set_distance
 from esc_identifier.utils.string import (
     normalize_human_name, normalize_affiliation
 )
-
-
-Author = namedtuple('Author', ['kdd_id', 'name', 'affiliation'])
-RealAuthor = namedtuple('RealAuthor', ['kdd_author_ids', 'name', 'affiliation'])
+from . import Author
 
 
 def human_name_distance(a: str, b: str, normalize=False):

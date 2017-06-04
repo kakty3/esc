@@ -3,8 +3,10 @@ import re
 from collections import OrderedDict
 import functools
 
-from esc_identifier.utils.common import compose
 import nltk
+
+from esc_identifier.utils.common import compose
+from esc_identifier.author import Author
 
 
 def to_ascii(string):
@@ -95,3 +97,9 @@ def normalize_affiliation(string):
     return string
 
 
+def normalize_author(author: Author):
+    return Author(
+        kdd_id=author.kdd_id,
+        name=normalize_human_name(author.name),
+        affiliation=normalize_affiliation(author.affiliation)
+    )
