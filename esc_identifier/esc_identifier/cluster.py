@@ -40,18 +40,11 @@ def get_clusters(sequence, distance_function, key=None, eps=0.1):
     indices_clusters = dbscan(items_indices, distance_matrix_, eps=eps)
     return indices_clusters
 
-# def get_clusters(iterable, distance_function, eps=0.1):
-#     distance_matrix_ = distance_matrix(
-#         iterable,
-#         distance_function
-#     )
-#
-#     items_indices = list(range(len(iterable)))
-#
-#     indices_clusters = dbscan(items_indices, distance_matrix_, eps=eps)
-#     clusters = [
-#         [iterable[i] for i in cluster]
-#         for cluster
-#         in indices_clusters
-#     ]
-#     return clusters
+
+def group_by_index(sequence, indices):
+    groups = [
+        [sequence[idx] for idx in indices_group]
+        for indices_group
+        in indices
+    ]
+    return groups
