@@ -1,4 +1,4 @@
-from functools import wraps
+from functools import wraps, partial
 
 import numpy as np
 from scipy.spatial import distance
@@ -28,13 +28,18 @@ def normalize_fuzzywuzzy_distance(f):
 ratio_distance = normalize_fuzzywuzzy_distance(fuzz.ratio)
 partial_ratio_distance = normalize_fuzzywuzzy_distance(fuzz.partial_ratio)
 
-token_sort_distance = normalize_fuzzywuzzy_distance(fuzz.token_sort_ratio)
-partial_token_sort_distance =\
-    normalize_fuzzywuzzy_distance(fuzz.partial_token_sort_ratio)
-
-token_set_distance = normalize_fuzzywuzzy_distance(fuzz._token_set)
-partial_token_set_distance =\
-    normalize_fuzzywuzzy_distance(fuzz.partial_token_set_ratio)
+token_sort_distance = normalize_fuzzywuzzy_distance(
+    partial(fuzz._token_sort, partial=False, full_process=False)
+)
+partial_token_sort_distance = normalize_fuzzywuzzy_distance(
+    partial(fuzz._token_sort, partial=True, full_process=False)
+)
+token_set_distance = normalize_fuzzywuzzy_distance(
+    partial(fuzz._token_set, partial=False, full_process=False)
+)
+partial_token_set_distance = normalize_fuzzywuzzy_distance(
+    partial(fuzz._token_set, partial=True, full_process=False)
+)
 
 
 def normalize_jellyfish_distance(f):

@@ -1,4 +1,3 @@
-from functools import partial
 
 from esc_identifier.distance import token_set_distance
 from esc_identifier.utils.string import (
@@ -6,12 +5,8 @@ from esc_identifier.utils.string import (
 )
 from . import Author
 
-distance_function = partial(
-    token_set_distance,
-    force_ascii=False,
-    full_process=False,
-    partial=False,
-)
+
+distance_function = token_set_distance
 
 
 def human_name_distance(a: str, b: str, normalize=False):
