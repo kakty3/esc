@@ -173,3 +173,6 @@ data/
 postgres-data/
 nltk_data
 mongodb-data
+
+jupyter_notebooks/models
+jupyter_notebooks/datasets
